@@ -1,0 +1,5 @@
+amount,merchant,fraud_score,location
+500.00,My Local Store,10,New York
+9999.99,Evil Hacker,99,Unknown
+25.50,Coffee Shop,5,London
+100000.00,Bank Heist,100,Lagos
