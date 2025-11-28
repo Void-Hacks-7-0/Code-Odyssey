@@ -13,7 +13,6 @@ const { generateTransaction } = require('./generator');
 const { checkPMLA } = require('./pmla');
 const { initDb, insertTransaction, getRecentTransactions } = require('./db');
 const { Blockchain, Block } = require('./blockchain');
-const { WalletSystem } = require('./wallet');
 
 // Initialize Database
 initDb();
@@ -42,11 +41,10 @@ const MAX_HISTORY = 100;
 
 // Initialize Blockchain
 const auditBlockchain = new Blockchain();
-const walletSystem = new WalletSystem(auditBlockchain);
 
 
 
-wss.on('connection', (ws, req) => {
+wss.on('connection', async (ws, req) => {
   // Simple token auth via query param
   try {
     const url = new URL(req.url, `http://${req.headers.host}`);
@@ -61,7 +59,7 @@ wss.on('connection', (ws, req) => {
 
   console.log('Client connected. Total clients:', wss.clients.size);
   // Send recent history from DB
-  const recent = getRecentTransactions(50);
+  const recent = await getRecentTransactions(50);
   ws.send(JSON.stringify({ type: 'HISTORY', data: recent }));
 
   ws.on('close', () => console.log('Client disconnected'));
@@ -117,9 +115,9 @@ app.get('/', (req, res) => {
   res.json({ status: 'RealtimeGuard Simulator Running', clients: wss.clients.size });
 });
 
-app.get('/api/latest', (req, res) => {
+app.get('/api/latest', async (req, res) => {
   const limit = parseInt(req.query.limit) || 50;
-  const transactions = getRecentTransactions(limit);
+  const transactions = await getRecentTransactions(limit);
   res.json(transactions);
 });
 
@@ -161,31 +159,46 @@ app.get('/api/actions', (req, res) => {
     timestamp: block.timestamp,
     hash: block.hash,
     previousHash: block.previousHash,
-    index: block.index
+    index: block.index,
+    signature: block.signature,
+    signer: block.signer
   }));
   res.json(chainData.reverse());
 });
 
 app.get('/api/blockchain/verify', (req, res) => {
-  const isValid = auditBlockchain.isChainValid();
-  res.json({ valid: isValid, chainLength: auditBlockchain.chain.length });
-});
+  // Reload chain from disk to capture any manual file edits (Hot Reload)
+  auditBlockchain.loadChain();
+  const validationResult = auditBlockchain.isChainValid();
 
-// --- Wallet Endpoints ---
-app.get('/api/wallet/balance/:userId', (req, res) => {
-  const balance = walletSystem.getBalance(req.params.userId);
-  res.json({ balance });
-});
+  if (!validationResult.valid) {
+    // Process all errors
+    const detailedErrors = validationResult.errors.map(err => {
+      const signerAddress = err.block.signer;
+      // Find all blocks signed by this user
+      const signerHistory = auditBlockchain.chain
+        .filter(b => b.signer === signerAddress)
+        .map(b => ({
+          index: b.index,
+          timestamp: b.timestamp,
+          id: b.data.id,
+          action: b.data.action,
+          hash: b.hash
+        }));
 
-app.post('/api/wallet/transfer', (req, res) => {
-  const { to, amount, reason } = req.body;
-  const fromUser = 'current_user'; // Hardcoded for demo
+      return {
+        ...err,
+        signerHistory
+      };
+    });
 
-  try {
-    const result = walletSystem.transfer(fromUser, to, amount, reason);
-    res.json(result);
-  } catch (err) {
-    res.status(400).json({ error: err.message });
+    res.json({
+      valid: false,
+      chainLength: auditBlockchain.chain.length,
+      errors: detailedErrors
+    });
+  } else {
+    res.json({ valid: true, chainLength: auditBlockchain.chain.length });
   }
 });
 

@@ -1,4 +1,4 @@
-const Database = require('better-sqlite3');
+const Datastore = require('nedb');
 const path = require('path');
 const fs = require('fs');
 
@@ -8,88 +8,61 @@ if (!fs.existsSync(dataDir)) {
     fs.mkdirSync(dataDir);
 }
 
-const dbPath = path.join(dataDir, 'database.sqlite');
-const db = new Database(dbPath, { verbose: console.log });
+const dbPath = path.join(dataDir, 'database.db');
+const db = new Datastore({ filename: dbPath, autoload: true });
 
-// Initialize database
+// Initialize database (NeDB doesn't need explicit table creation)
 const initDb = () => {
-    const createTableQuery = `
-    CREATE TABLE IF NOT EXISTS transactions (
-      id TEXT PRIMARY KEY,
-      transaction_id TEXT,
-      timestamp TEXT,
-      amount REAL,
-      currency TEXT,
-      payment_mode TEXT,
-      device_id TEXT,
-      ip TEXT,
-      lat REAL,
-      lon REAL,
-      location TEXT,
-      user_id TEXT,
-      merchant TEXT,
-      fraud_score INTEGER,
-      risk_score INTEGER,
-      features TEXT,
-      rule_triggers TEXT
-    )
-  `;
-    db.exec(createTableQuery);
-    console.log('Database initialized and table "transactions" ready.');
+    console.log('NeDB (MongoDB-compatible) initialized.');
 };
 
 // Insert a transaction
 const insertTransaction = (tx) => {
-    const stmt = db.prepare(`
-    INSERT INTO transactions (
-      id, transaction_id, timestamp, amount, currency, payment_mode, 
-      device_id, ip, lat, lon, location, user_id, merchant, 
-      fraud_score, risk_score, features, rule_triggers
-    ) VALUES (
-      @id, @transaction_id, @timestamp, @amount, @currency, @payment_mode, 
-      @device_id, @ip, @lat, @lon, @location, @user_id, @merchant, 
-      @fraud_score, @risk_score, @features, @rule_triggers
-    )
-  `);
+    // NeDB handles JSON objects natively, no need to stringify features/triggers manually
+    // unless we want to keep exact compatibility with the old SQLite structure.
+    // For "MongoDB" feel, we store objects directly.
 
-    // Serialize objects to JSON strings
-    const data = {
-        ...tx,
-        features: JSON.stringify(tx.features),
-        rule_triggers: JSON.stringify(tx.rule_triggers)
-    };
-
-    try {
-        stmt.run(data);
-        // console.log(`Transaction ${tx.id} inserted.`);
-    } catch (err) {
-        console.error('Error inserting transaction:', err);
-        throw err;
-    }
+    db.insert(tx, (err, newDoc) => {
+        if (err) {
+            console.error('Error inserting transaction:', err);
+        }
+    });
 };
 
 // Get recent transactions
 const getRecentTransactions = (limit = 100) => {
-    const stmt = db.prepare('SELECT * FROM transactions ORDER BY timestamp DESC LIMIT ?');
-    const rows = stmt.all(limit);
+    // NeDB is async by default, but for this synchronous-style legacy API,
+    // we might need to wrap it or use a promise-based approach.
+    // However, since the original code expected a return value immediately,
+    // and NeDB is callback-based, we have a mismatch.
+    // To fix this without rewriting the whole app to async/await,
+    // we will use a simple "in-memory" buffer for the immediate return
+    // or we can use 'deasync' but that's risky.
 
-    // Parse JSON strings back to objects
-    return rows.map(row => ({
-        ...row,
-        features: JSON.parse(row.features),
-        rule_triggers: JSON.parse(row.rule_triggers)
-    }));
+    // BETTER APPROACH: The original server.js calls this synchronously?
+    // Let's check server.js. It calls it in `app.get` and `wss.on`.
+    // We should probably make this async and update server.js.
+    // BUT to keep changes minimal, let's see if we can just return a promise
+    // and handle it in server.js.
+
+    // Actually, let's just use a Promise here and update server.js to await it.
+    // It's the cleanest way.
+    return new Promise((resolve, reject) => {
+        db.find({}).sort({ timestamp: -1 }).limit(limit).exec((err, docs) => {
+            if (err) reject(err);
+            else resolve(docs);
+        });
+    });
 };
 
-// Get all transactions (use with caution on large datasets)
+// Get all transactions
 const getAllTransactions = () => {
-    const stmt = db.prepare('SELECT * FROM transactions ORDER BY timestamp DESC');
-    const rows = stmt.all();
-    return rows.map(row => ({
-        ...row,
-        features: JSON.parse(row.features),
-        rule_triggers: JSON.parse(row.rule_triggers)
-    }));
+    return new Promise((resolve, reject) => {
+        db.find({}).sort({ timestamp: -1 }).exec((err, docs) => {
+            if (err) reject(err);
+            else resolve(docs);
+        });
+    });
 };
 
 module.exports = {

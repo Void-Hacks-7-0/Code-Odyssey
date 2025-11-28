@@ -67,6 +67,16 @@ const generateTransaction = () => {
 
   const txId = uuidv4();
 
+  // --- DEMO SCENARIO: The "Money Launderer" ---
+  // Every ~5th transaction is a "Structuring" attempt (Just below 50k)
+  if (Math.random() < 0.2) {
+    user = "launderer_joe";
+    amount = 49900; // Classic "Smurfing" amount
+    merchant = "Shell Corp LLC";
+    riskScore = 95;
+    ruleTriggers.push("PMLA_STRUCTURING_ALERT");
+  }
+
   const tx = {
     id: txId, // Frontend expects 'id'
     transaction_id: txId, // Backend legacy

@@ -126,5 +126,351 @@
     "previousHash": "7774677c05ad80688ee414354deab74a3686c3f8bf40630fbbfab11b8915d76f",
     "hash": "fabf135893e30736e0efc6288fae07c080df69ff6dc49a5a27aaa797d175385a",
     "nonce": 0
+  },
+  {
+    "index": 10,
+    "timestamp": "2025-11-28T13:26:54.585Z",
+    "data": {
+      "id": "dcf22ef7-e791-44aa-bbbf-dfefa4c70486",
+      "action": "BLOCK",
+      "notes": "Analyst manual review"
+    },
+    "previousHash": "fabf135893e30736e0efc6288fae07c080df69ff6dc49a5a27aaa797d175385a",
+    "hash": "d86a8ed351e5ec3c076cd7552645f2c50973bf0898212352fdd7c91d1de9568f",
+    "nonce": 0
+  },
+  {
+    "index": 11,
+    "timestamp": "2025-11-28T13:59:35.393Z",
+    "data": {
+      "id": "34ca5af7-9cad-4dc8-953e-843297485cdb",
+      "action": "BLOCK",
+      "notes": "Analyst manual review"
+    },
+    "previousHash": "d86a8ed351e5ec3c076cd7552645f2c50973bf0898212352fdd7c91d1de9568f",
+    "hash": "e04ec51df34f3dbe24c11a0573a7f1b47e9542c93f2005854b2f7fa78ab3a265",
+    "nonce": 0
+  },
+  {
+    "index": 12,
+    "timestamp": "2025-11-28T14:15:49.235Z",
+    "data": {
+      "id": "91f29fdb-86dd-46e4-9f26-55248c2d8c64",
+      "action": "BLOCK",
+      "notes": "Analyst manual review"
+    },
+    "previousHash": "e04ec51df34f3dbe24c11a0573a7f1b47e9542c93f2005854b2f7fa78ab3a265",
+    "hash": "0d194c05e5e63f004b0a59082efb541dfba4902d1bdb610f261dde8a46a5437f",
+    "nonce": 0,
+    "signature": "0xe17344113682ccd275a26c15a68e779f527e8439c9abb79e642312cdda28c85612121b4454d41a772c52ed1c492f597e330e940f9827bd680f3c520ff99f7ee51c",
+    "signer": "0xBf186929da2ceD32881a6c156EE2D3d823FF1269"
+  },
+  {
+    "index": 13,
+    "timestamp": "2025-11-28T14:15:57.324Z",
+    "data": {
+      "id": "7d9d27f2-f310-411b-89e4-c8f9e4f4626f",
+      "action": "BLOCK",
+      "notes": "Analyst manual review"
+    },
+    "previousHash": "0d194c05e5e63f004b0a59082efb541dfba4902d1bdb610f261dde8a46a5437f",
+    "hash": "0f2d9c4eeef2310573db8fca3c6d121c942240816738d52e7861c97e02217a19",
+    "nonce": 0,
+    "signature": "0xe5a17d1aae5db50defe4707b97671dbf533ff86d27f737e60592ab2483bdec026ea391cf09440fd8c0b216997a7a2398fd3098f2794b12e54894abeebecf0d9e1b",
+    "signer": "0xBf186929da2ceD32881a6c156EE2D3d823FF1269"
+  },
+  {
+    "index": 14,
+    "timestamp": "2025-11-28T14:24:47.379Z",
+    "data": {
+      "id": "51d4cb67-ed66-4f23-9615-7b6076b5afe9",
+      "action": "BLOCK",
+      "notes": "Analyst manual review"
+    },
+    "previousHash": "0f2d9c4eeef2310573db8fca3c6d121c942240816738d52e7861c97e02217a19",
+    "hash": "417360ce7a3fabc9188a98379a53a4d8fc6acdfb5bc6a049f56af10ba222027b",
+    "nonce": 0,
+    "signature": "0xff4d0fba3da50f1152c154021aa2e4cad17baa2d272a59671499ba5f8c0968fc25d15180007e448e6621e80231d28b244109892663e92ba6739c06e7f8e9f5481c",
+    "signer": "0xBf186929da2ceD32881a6c156EE2D3d823FF1269"
+  },
+  {
+    "index": 15,
+    "timestamp": "2025-11-28T14:28:31.902Z",
+    "data": {
+      "id": "14ce97aa-1d18-4f66-8cba-f99ba544d44f",
+      "action": "BLOCK",
+      "notes": "Analyst manual review"
+    },
+    "previousHash": "417360ce7a3fabc9188a98379a53a4d8fc6acdfb5bc6a049f56af10ba222027b",
+    "hash": "daeba30805262cdb60eefeb2e41f949e4446fbc6b88dd17f6151502ba42168f3",
+    "nonce": 0,
+    "signature": "0xaa12eb9527027d4629ebb04d04671bce766eceb2fe3787a41b7f5c881b8c1b6818e0fc56bd5367801d5fab4009d1d2aea1010004e373882cb772b9eb80f90d341c",
+    "signer": "0xBf186929da2ceD32881a6c156EE2D3d823FF1269"
+  },
+  {
+    "index": 16,
+    "timestamp": "2025-11-28T14:31:20.661Z",
+    "data": {
+      "id": "1b579681-f81d-4de8-94ce-6dd371750923",
+      "action": "BLOCK",
+      "notes": "Analyst manual review"
+    },
+    "previousHash": "daeba30805262cdb60eefeb2e41f949e4446fbc6b88dd17f6151502ba42168f3",
+    "hash": "14a2b4741bf3b66119d121d2517cadd929324824119fdfe7123068dc05588bca",
+    "nonce": 0,
+    "signature": "0x0e79c8ea3564ce2ec8bc63a537cc8ad17a03098a60fad241a3f83c395ee9315f4233e3446b90207d3de92730bcd7553fb67d3d38354ef338e2558e9354d280a01c",
+    "signer": "0x1DF94D89890cfa02122E0083081eD74c7E21c10C"
+  },
+  {
+    "index": 17,
+    "timestamp": "2025-11-28T14:41:52.582Z",
+    "data": {
+      "id": "054d2d1b-9e93-47fe-8ca0-24a33d0d267b",
+      "action": "BLOCK",
+      "notes": "Analyst manual review"
+    },
+    "previousHash": "14a2b4741bf3b66119d121d2517cadd929324824119fdfe7123068dc05588bca",
+    "hash": "184efc2da41187322ce55560c4b14d6db19b7f6595d2ee5e538c29f42bf581fc",
+    "nonce": 0,
+    "signature": "0x614559a66292c85f51aa5a9a6d1b97785bcdcb71f9f970ca4bda426293c4f9f84f3ffcdb7f2938801e39910915f45059eab703bddb90532a447c775f8a3af1f11b",
+    "signer": "0x3e8F12edc147f3724aED44248c142b2c88011056"
+  },
+  {
+    "index": 18,
+    "timestamp": "2025-11-28T14:45:39.737Z",
+    "data": {
+      "id": "a9e9b84f-e9ba-4f91-b147-e48a7962ef3d",
+      "action": "BLOCK",
+      "notes": "Analyst manual review"
+    },
+    "previousHash": "184efc2da41187322ce55560c4b14d6db19b7f6595d2ee5e538c29f42bf581fc",
+    "hash": "a68abacf914ce65c734f7f2ac5faf6cba8cb896903239f0ca712f336d1494ff8",
+    "nonce": 0,
+    "signature": "0x95517239b2d18f82c88048bf89454c54821f3d26c4b5b2fd1dc874b3f3ccbe6213ba19dedb00366aeb3dfb92a5b7ebd0cbfd02f91f312e2585c61bc9e89361d71b",
+    "signer": "0x3e8F12edc147f3724aED44248c142b2c88011056"
+  },
+  {
+    "index": 19,
+    "timestamp": "2025-11-28T16:05:11.940Z",
+    "data": {
+      "id": "66eb6e7f-7ad5-4816-91b1-720f9b23e2bb",
+      "action": "ALLOW",
+      "notes": "Analyst manual review"
+    },
+    "previousHash": "a68abacf914ce65c734f7f2ac5faf6cba8cb896903239f0ca712f336d1494ff8",
+    "hash": "f8eaa308ced5891598d867c0fc30d45b0aa0cd52489b423c2e53b641fa512611",
+    "nonce": 0,
+    "signature": "0x1401edbb2aa9dc71a99bc572dae85b98bac15b539d50d475203d85201485ea912d290ce6e9119c664384c0d43ff80e3124cef11ca482e468719db6e064cea6911b",
+    "signer": "0x10c8D9061035Fd4a90E1270DA838183C52fc5C86"
+  },
+  {
+    "index": 20,
+    "timestamp": "2025-11-28T16:14:18.927Z",
+    "data": {
+      "id": "1e7efc13-547c-4a98-b930-823300fe4fee",
+      "action": "ALLOW",
+      "notes": "Analyst manual review"
+    },
+    "previousHash": "f8eaa308ced5891598d867c0fc30d45b0aa0cd52489b423c2e53b641fa512611",
+    "hash": "94e7f994e9ef2bc2cfa4f7038bf4731e086c976a5b0e449ce7336b9608ace014",
+    "nonce": 0,
+    "signature": "0x4784fb58306957d295abc8d0b49511b12ff34a2b1d795fa2776ecb9e88107a19097758c243051449e6ed64cb6f5c2e1f18b2eaeec18731e6328bcfd1b1f111161b",
+    "signer": "0xf82d2192C58d93d028D674775e4365060274F02E"
+  },
+  {
+    "index": 21,
+    "timestamp": "2025-11-28T16:18:46.695Z",
+    "data": {
+      "id": "2b544726-1c40-4068-8071-d8babae50b76",
+      "action": "BLOCK",
+      "notes": "Analyst manual review"
+    },
+    "previousHash": "94e7f994e9ef2bc2cfa4f7038bf4731e086c976a5b0e449ce7336b9608ace014",
+    "hash": "5e82ec34e86ac4863e6e2113049b0fce0ac60c09f2ffe292353dad2254eed703",
+    "nonce": 0,
+    "signature": "0x34c122a73537eaa4552b992651bab2208bd0cd69412b98b054e36c699586ae486ab42a23f10b3c18e80007c67a4929766cf57884b7393e38d46c17c16064c3461c",
+    "signer": "0x5A110b3Ed99AFEc42eBD70E45451652404B6D692"
+  },
+  {
+    "index": 22,
+    "timestamp": "2025-11-28T16:24:30.223Z",
+    "data": {
+      "id": "4e558239-ad2d-4a82-88cc-986705fc8c8a",
+      "action": "ALLOW",
+      "notes": "Analyst manual review"
+    },
+    "previousHash": "5e82ec34e86ac4863e6e2113049b0fce0ac60c09f2ffe292353dad2254eed703",
+    "hash": "3203eaa7064ed9de5a1dd1e17f38fe0907ea554c13a3dbbb86637b6ef78f0cd6",
+    "nonce": 0,
+    "signature": "0xf6060e3a3211f6b9d44df2101773302b051aabf07c61eac32d5896693f54b79553a0c91fe6dc4abbc4484fd5935b625007c4f41b86779a3b50ab9cda344c64031c",
+    "signer": "0x5A110b3Ed99AFEc42eBD70E45451652404B6D692"
+  },
+  {
+    "index": 23,
+    "timestamp": "2025-11-28T16:40:05.565Z",
+    "data": {
+      "id": "15b33a73-662d-41f3-9a34-1bf86d7de554",
+      "action": "ALLOW",
+      "notes": "Analyst manual review"
+    },
+    "previousHash": "3203eaa7064ed9de5a1dd1e17f38fe0907ea554c13a3dbbb86637b6ef78f0cd6",
+    "hash": "fcf6848b253741dbb3ec7f4a3d404b62952b9a1c4cefb022939a8ab994c8cec3",
+    "nonce": 0,
+    "signature": "0xec66b4669a05d5ccf35f1c1658596edefadfabdcdea88a46e35598a55c25fd8f1ed55da072107e6795f18b07ed5a9617ed228e0b087721808b3e7c590754c4891b",
+    "signer": "0x299f49cbfe7316EC035e4c75eD14cE220b5a0cC5"
+  },
+  {
+    "index": 24,
+    "timestamp": "2025-11-28T16:46:03.955Z",
+    "data": {
+      "id": "7dec7c2e-681b-4c4c-bea8-8aea850e0d3f",
+      "action": "ALLOW",
+      "notes": "Analyst manual review"
+    },
+    "previousHash": "fcf6848b253741dbb3ec7f4a3d404b62952b9a1c4cefb022939a8ab994c8cec3",
+    "hash": "25f0de5f5a566089da577b87cf4779b48e1d4e790843770fec7be07d5a432411",
+    "nonce": 0,
+    "signature": "0x9ebfdb7e41d89b8051df1c90cb4f399b0262fe7e3ad8eedf6b15efca3e977abc5fb3785d0651a7fd4aed14c01ff57bf8fc21c4ffc6cfed7e819bafd8a17943a01c",
+    "signer": "0x814B44819d8FACDF6C904f066BCa9EcA79A43d1f"
+  },
+  {
+    "index": 25,
+    "timestamp": "2025-11-28T16:50:37.509Z",
+    "data": {
+      "id": "06afd43e-3351-41bb-93f0-fb6a9c5716ca",
+      "action": "BLOCK",
+      "notes": "Analyst manual review"
+    },
+    "previousHash": "25f0de5f5a566089da577b87cf4779b48e1d4e790843770fec7be07d5a432411",
+    "hash": "c7f87df526eb56dd58db0be1173a96a87fa777344fdd63520e24e73dfc09dcb1",
+    "nonce": 0,
+    "signature": "0x2093d016f1bc8fe9ecae3ec0ce9948eb31efcc189ee6992c944eecdb28f601236c95c6741b53211a3e371f64c23050dd6dbbc072fecda753ade757fc5531a1761b",
+    "signer": "0x298feA1fcb4526C029aA52161807454F073005d7"
+  },
+  {
+    "index": 26,
+    "timestamp": "2025-11-28T16:50:49.148Z",
+    "data": {
+      "id": "e4fe6a91-d148-4d66-b754-19d3326acdd1",
+      "action": "BLOCK",
+      "notes": "Analyst manual review"
+    },
+    "previousHash": "c7f87df526eb56dd58db0be1173a96a87fa777344fdd63520e24e73dfc09dcb1",
+    "hash": "a07165df955e6e7f2feaea10d94c076f2a46cf2e65ba76393f261c76701c6ac6",
+    "nonce": 0,
+    "signature": "0xc52bc7177f8ea9542e0e033e2802d2e4c46b91d95bba70ae8bd7dfc2fc63acd40e928333a47fc0cfd2600ed24e4c4a4976db68a9057c7287fe31aebf8e9171961b",
+    "signer": "0x298feA1fcb4526C029aA52161807454F073005d7"
+  },
+  {
+    "index": 27,
+    "timestamp": "2025-11-28T16:52:30.365Z",
+    "data": {
+      "id": "cefafaef-9284-4f24-aa0b-292a9bbfc01c",
+      "action": "BLOCK",
+      "notes": "Analyst manual review"
+    },
+    "previousHash": "a07165df955e6e7f2feaea10d94c076f2a46cf2e65ba76393f261c76701c6ac6",
+    "hash": "3f6d967935e53935c28dbbf1f9cf0c25577351ad85f6fea1607aee8354fb6c58",
+    "nonce": 0,
+    "signature": "0xa1f6813649b8b34f9e72c675d632776130d4bd99f72826863b4a30cbc701a9535659a4711d6f83bb559568488eb025bfb76c9eafd4aca8fbba699ee85874f9af1b",
+    "signer": "0x298feA1fcb4526C029aA52161807454F073005d7"
+  },
+  {
+    "index": 28,
+    "timestamp": "2025-11-28T17:01:04.693Z",
+    "data": {
+      "id": "994af125-3128-451d-98ba-c31ff1655c4a",
+      "action": "ALLOW",
+      "notes": "Analyst manual review"
+    },
+    "previousHash": "3f6d967935e53935c28dbbf1f9cf0c25577351ad85f6fea1607aee8354fb6c58",
+    "hash": "d2239ead475772206a3d3e43f7bd1864f51d7522f5972856636d331f9bd5cdaf",
+    "nonce": 0,
+    "signature": "0xa7a253a856f1511513a1b5d0cb61bd4a4d474ab435608bb4a1eedc60ce1431cb39397d1f875d2226956cd72f67a40d863bdd1cb29ee186c6634e6f3f0b0e69331b",
+    "signer": "0x335d6b6381734aFF5511f8b99c84d6c89C41DC8c"
+  },
+  {
+    "index": 29,
+    "timestamp": "2025-11-28T18:12:02.954Z",
+    "data": {
+      "id": "b28c7307-e735-41fa-9472-41ab4df6dc16",
+      "action": "BLOCK",
+      "notes": "Analyst manual review"
+    },
+    "previousHash": "d2239ead475772206a3d3e43f7bd1864f51d7522f5972856636d331f9bd5cdaf",
+    "hash": "391cff91ff7a6208b418c455974fab291439904e7a4884509e2f78497bc903b4",
+    "nonce": 0,
+    "signature": "0xf397782a816e9ae1a69448571d6b63c2e89b1d75730710ec336e0a7c5b9588bc32eac696f96372ea45a876f28c88349677b4832dfb1710e2875976ee4258ead51c",
+    "signer": "0xF2c25721DD25FeBBD98574a3F633cEe520d72a4d"
+  },
+  {
+    "index": 30,
+    "timestamp": "2025-11-28T18:25:18.724Z",
+    "data": {
+      "id": "36204934-c537-40a9-8c71-92e6a83f7f33",
+      "action": "BLOCK",
+      "notes": "Analyst manual review"
+    },
+    "previousHash": "391cff91ff7a6208b418c455974fab291439904e7a4884509e2f78497bc903b4",
+    "hash": "c45f3b0ae5d3929dfe63ddde372a789475cebcecddf66e8bb16f02c91d93147c",
+    "nonce": 0,
+    "signature": "0x8f528441efd642f2e28b03965b663a39993a0f5ef4d95512b3c13fb25f7b78304d2df40a1d1bc0e1cb816097b4e2bdd84ec4db9ae3713547c951099ab291102c1c",
+    "signer": "0x4834a466c22De5Df4A0c8B9a4BD13b0dEBe900cC"
+  },
+  {
+    "index": 31,
+    "timestamp": "2025-11-28T18:26:15.849Z",
+    "data": {
+      "id": "a1578449-be1d-4cb3-82ee-f219f8ba31f9",
+      "action": "ALLOW",
+      "notes": "Analyst manual review"
+    },
+    "previousHash": "c45f3b0ae5d3929dfe63ddde372a789475cebcecddf66e8bb16f02c91d93147c",
+    "hash": "ef4433302e7467b660a02b284468539745881140c3a0faf7d92f847e61ba8fb8",
+    "nonce": 0,
+    "signature": "0x5189febeedee96f3621bff1d3f6b0b4cdfbd64b93786089d07a213774ec276f40941194aca2322abf0f13395908248658933df4059d37c8d7be5f206d287c1541b",
+    "signer": "0xc8031588410db508e4815A1B18Fa5f35E218FD48"
+  },
+  {
+    "index": 32,
+    "timestamp": "2025-11-28T18:28:30.070Z",
+    "data": {
+      "id": "6a1b3368-fbbc-429b-9f37-7ea4bc58d6d6",
+      "action": "ALLOW",
+      "notes": "Analyst manual review"
+    },
+    "previousHash": "ef4433302e7467b660a02b284468539745881140c3a0faf7d92f847e61ba8fb8",
+    "hash": "15595ad05575fc5a6b295a1f6315b4e9d8dd66a65970f25be4bb10ec82130a89",
+    "nonce": 0,
+    "signature": "0xda4a85b8b9306fbb363e13249d82c63a56625b9f845c4b38ad9e9457e6f79b224d061d3f16c7824082db33eaadc1fc3c6b03fad4dae6392b7b5f1d491c7635e31b",
+    "signer": "0x73F6E34b46571a0714f7aBD7c93508ff6cBDCD5E"
+  },
+  {
+    "index": 33,
+    "timestamp": "2025-11-28T19:15:30.633Z",
+    "data": {
+      "id": "6f59cb19-ddb2-4efc-96af-f38d2c8b6cd4",
+      "action": "ALLOW",
+      "notes": "Analyst manual review"
+    },
+    "previousHash": "15595ad05575fc5a6b295a1f6315b4e9d8dd66a65970f25be4bb10ec82130a89",
+    "hash": "5bd4dbfa8be632f128129eae6562053c27638c2c40b6049e9db422c17d79acb6",
+    "nonce": 0,
+    "signature": "0x06d693851590cbf309298fc360a4370fdb035daf0c7d6d41c424d8d1f87988ec20d8c896302d3546a522ffe920fa9ff9fe60ad34845b4848902b15b2433d3ec81c",
+    "signer": "0x0fd5940805BE6C5aebADc7D4bf7e87e5925fd2c8"
+  },
+  {
+    "index": 34,
+    "timestamp": "2025-11-28T19:21:34.874Z",
+    "data": {
+      "id": "174456eb-ea10-41ec-990b-40ffcf08d1b9",
+      "action": "ALLOW",
+      "notes": "Analyst manual review"
+    },
+    "previousHash": "5bd4dbfa8be632f128129eae6562053c27638c2c40b6049e9db422c17d79acb6",
+    "hash": "27d2b75fb5e2187adb1c64d27164b10680a879e931fae424acc26c0c2bb0f07c",
+    "nonce": 0,
+    "signature": "0xe24a4b9c0916672254dd7b18c431ca7ca8fd901036dd691466cc7f4ab77eb9614699720251c54e27457052776df9d9f68a7f29fa611aeddae642c7f46e3e9aa21c",
+    "signer": "0x0c96c1A5384f5613ffB06996Ef5f301c7A7a9a14"
   }
 ]
