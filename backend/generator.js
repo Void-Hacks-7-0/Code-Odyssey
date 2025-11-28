@@ -5,9 +5,13 @@ const CITIES = [
   { city: "Mumbai", country: "IN", lat: 19.0760, lon: 72.8777 },
   { city: "Delhi", country: "IN", lat: 28.7041, lon: 77.1025 },
   { city: "Bangalore", country: "IN", lat: 12.9716, lon: 77.5946 },
-  { city: "New York", country: "US", lat: 40.7128, lon: -74.0060 },
-  { city: "London", country: "UK", lat: 51.5074, lon: -0.1278 },
-  { city: "Lagos", country: "NG", lat: 6.5244, lon: 3.3792 }
+  { city: "Chennai", country: "IN", lat: 13.0827, lon: 80.2707 },
+  { city: "Kolkata", country: "IN", lat: 22.5726, lon: 88.3639 },
+  { city: "Hyderabad", country: "IN", lat: 17.3850, lon: 78.4867 },
+  { city: "Pune", country: "IN", lat: 18.5204, lon: 73.8567 },
+  { city: "Ahmedabad", country: "IN", lat: 23.0225, lon: 72.5714 },
+  { city: "Jaipur", country: "IN", lat: 26.9124, lon: 75.7873 },
+  { city: "Lucknow", country: "IN", lat: 26.8467, lon: 80.9462 }
 ];
 
 const MERCHANTS = [
@@ -24,10 +28,9 @@ const PAYMENT_MODES = ["UPI", "CARD", "WALLET", "NETBANKING"];
 const randomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 const randomItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
-// Generate an IP address (Skewed towards US/IN)
-const generateIP = (country) => {
-  if (country === 'US') return `104.${randomInt(10, 255)}.${randomInt(0, 255)}.${randomInt(0, 255)}`;
-  return `192.168.${randomInt(0, 10)}.${randomInt(0, 255)}`;
+// Generate an IP address (Skewed towards IN)
+const generateIP = () => {
+  return `103.${randomInt(10, 255)}.${randomInt(0, 255)}.${randomInt(0, 255)}`;
 };
 
 const generateTransaction = () => {
@@ -52,9 +55,9 @@ const generateTransaction = () => {
       if (failedLogins > 3) ruleTriggers.push("MULTIPLE_FAILED_LOGINS");
     } else {
       deviceAge = randomInt(0, 2);
-      loc = randomItem(CITIES.filter(c => c.country !== 'IN'));
+      // Pick a random city different from the current one for GEO_MISMATCH simulation if needed
+      // For now, just flagging NEW_DEVICE
       ruleTriggers.push("NEW_DEVICE");
-      ruleTriggers.push("GEO_MISMATCH");
     }
   }
 
@@ -72,7 +75,7 @@ const generateTransaction = () => {
     currency: (loc.country === 'IN') ? "INR" : "USD",
     payment_mode: mode,
     device_id: `dev_${uuidv4().slice(0, 8)}`,
-    ip: generateIP(loc.country),
+    ip: generateIP(),
 
     // Flattened location for Frontend
     lat: loc.lat,

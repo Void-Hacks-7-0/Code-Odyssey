@@ -11,10 +11,16 @@ const axios = require('axios');
 const morgan = require('morgan');
 const { generateTransaction } = require('./generator');
 const { checkPMLA } = require('./pmla');
+const { initDb, insertTransaction, getRecentTransactions } = require('./db');
+const { Blockchain, Block } = require('./blockchain');
+const { WalletSystem } = require('./wallet');
 
+// Initialize Database
+initDb();
 const PORT = process.env.PORT || 4000;
 const SLACK_WEBHOOK_URL = process.env.SLACK_WEBHOOK_URL;
 const WS_TOKEN = process.env.WS_TOKEN || '';
+const ENABLE_MOCK_DATA = process.env.ENABLE_MOCK_DATA !== 'false'; // Default to true
 
 const app = express();
 const server = http.createServer(app);
@@ -28,16 +34,17 @@ app.use(morgan('combined'));
 const limiter = rateLimit({ windowMs: 15 * 60 * 1000, max: 200 });
 app.use('/api/', limiter);
 
-const MAX_HISTORY = 2000;
-const transactionHistory = [];
-const actionsLog = [];
+// --- In-Memory Cache for WebSocket Broadcasting ---
+// We'll keep a small buffer for new connections, but main history is in DB
+let transactionHistory = [];
+const MAX_HISTORY = 100;
+// const actionsLog = []; // REPLACED BY BLOCKCHAIN
 
-const logAction = (data) => {
-  const logEntry = `[${new Date().toISOString()}] ${JSON.stringify(data)}\n`;
-  fs.appendFile(path.join(__dirname, 'actions.log'), logEntry, (err) => {
-    if (err) console.error("Log Error:", err);
-  });
-};
+// Initialize Blockchain
+const auditBlockchain = new Blockchain();
+const walletSystem = new WalletSystem(auditBlockchain);
+
+
 
 wss.on('connection', (ws, req) => {
   // Simple token auth via query param
@@ -53,11 +60,9 @@ wss.on('connection', (ws, req) => {
   }
 
   console.log('Client connected. Total clients:', wss.clients.size);
-  // Send recent history
-  const initialLoad = transactionHistory.slice(-50);
-  if (initialLoad.length > 0) {
-    ws.send(JSON.stringify({ type: 'HISTORY', data: initialLoad }));
-  }
+  // Send recent history from DB
+  const recent = getRecentTransactions(50);
+  ws.send(JSON.stringify({ type: 'HISTORY', data: recent }));
 
   ws.on('close', () => console.log('Client disconnected'));
 });
@@ -84,10 +89,14 @@ const startSimulation = () => {
       tx.fraud_score = Math.max(tx.fraud_score, 85);
     }
 
+    // 2. Persist to DB
+    insertTransaction(tx);
+
+    // 3. Update in-memory cache for immediate broadcast/history
     transactionHistory.push(tx);
     if (transactionHistory.length > MAX_HISTORY) transactionHistory.shift();
 
-    // Broadcast
+    // 4. Broadcast via WebSocket
     broadcast({ type: 'TX', data: tx });
 
     // Recurse
@@ -96,15 +105,22 @@ const startSimulation = () => {
 };
 
 // Start the simulation loop
-startSimulation();
+// Start the simulation loop if enabled
+if (ENABLE_MOCK_DATA) {
+  console.log("Mock data generation ENABLED.");
+  startSimulation();
+} else {
+  console.log("Mock data generation DISABLED.");
+}
 
 app.get('/', (req, res) => {
   res.json({ status: 'RealtimeGuard Simulator Running', clients: wss.clients.size });
 });
 
 app.get('/api/latest', (req, res) => {
-  const limit = Math.min(parseInt(req.query.limit) || 50, 200);
-  res.json(transactionHistory.slice(-limit).reverse());
+  const limit = parseInt(req.query.limit) || 50;
+  const transactions = getRecentTransactions(limit);
+  res.json(transactions);
 });
 
 app.post('/api/action', async (req, res) => {
@@ -113,27 +129,64 @@ app.post('/api/action', async (req, res) => {
     return res.status(400).json({ error: "Missing fields" });
   }
 
-  // Check for duplicate
-  const existing = actionsLog.find(log => log.id === transaction_id);
+  // Check for duplicate in blockchain
+  // We skip the genesis block (index 0)
+  const existing = auditBlockchain.chain.slice(1).find(block => block.data.id === transaction_id);
   if (existing) {
     console.log(`Duplicate action ignored for tx: ${transaction_id}`);
     return res.json({ success: true, message: "Action already recorded" });
   }
 
-  const record = { id: transaction_id, action, notes, timestamp: new Date().toISOString() };
-  actionsLog.push(record);
-  logAction(record);
+  const record = { id: transaction_id, action, notes };
+  const newBlock = new Block(
+    auditBlockchain.chain.length,
+    new Date().toISOString(),
+    record
+  );
+  auditBlockchain.addBlock(newBlock);
+
   if (SLACK_WEBHOOK_URL) {
     const color = action === 'BLOCK' ? '#FF0000' : '#36a64f';
     axios.post(SLACK_WEBHOOK_URL, {
-      attachments: [{ color, text: `*Action:* ${action}\n*Tx:* ${transaction_id}\n*Notes:* ${notes || 'N/A'}` }]
+      attachments: [{ color, text: `*Action:* ${action}\n*Tx:* ${transaction_id}\n*Notes:* ${notes || 'N/A'}\n*Hash:* ${newBlock.hash}` }]
     }).catch(err => console.error("Slack error:", err.message));
   }
-  res.json({ success: true });
+  res.json({ success: true, hash: newBlock.hash });
 });
 
 app.get('/api/actions', (req, res) => {
-  res.json(actionsLog.reverse());
+  // Return chain excluding genesis block, reversed for UI
+  const chainData = auditBlockchain.chain.slice(1).map(block => ({
+    ...block.data,
+    timestamp: block.timestamp,
+    hash: block.hash,
+    previousHash: block.previousHash,
+    index: block.index
+  }));
+  res.json(chainData.reverse());
+});
+
+app.get('/api/blockchain/verify', (req, res) => {
+  const isValid = auditBlockchain.isChainValid();
+  res.json({ valid: isValid, chainLength: auditBlockchain.chain.length });
+});
+
+// --- Wallet Endpoints ---
+app.get('/api/wallet/balance/:userId', (req, res) => {
+  const balance = walletSystem.getBalance(req.params.userId);
+  res.json({ balance });
+});
+
+app.post('/api/wallet/transfer', (req, res) => {
+  const { to, amount, reason } = req.body;
+  const fromUser = 'current_user'; // Hardcoded for demo
+
+  try {
+    const result = walletSystem.transfer(fromUser, to, amount, reason);
+    res.json(result);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
 });
 
 // Endpoint to ingest external transactions
@@ -178,6 +231,10 @@ app.post('/api/transaction', (req, res) => {
   // Add to history and broadcast
   transactionHistory.push(transaction);
   if (transactionHistory.length > MAX_HISTORY) transactionHistory.shift();
+
+  // Persist to disk
+  saveTransactions();
+
   broadcast({ type: 'TX', data: transaction });
 
   res.json({ success: true, id: txId, triggers: pmlaTriggers });

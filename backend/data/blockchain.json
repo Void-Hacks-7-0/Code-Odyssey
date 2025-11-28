@@ -1,0 +1,130 @@
+[
+  {
+    "index": 0,
+    "timestamp": "2024-01-01",
+    "data": "Genesis Block",
+    "previousHash": "0",
+    "hash": "5536927503e31361c571cf6b6e289c2ea4c86f8859dfcc5f431b4a966e72f30f",
+    "nonce": 0
+  },
+  {
+    "index": 1,
+    "timestamp": "2025-11-28T06:57:16.151Z",
+    "data": {
+      "id": "test_tx_1764313036002",
+      "action": "BLOCK",
+      "notes": "Verification Test"
+    },
+    "previousHash": "5536927503e31361c571cf6b6e289c2ea4c86f8859dfcc5f431b4a966e72f30f",
+    "hash": "67faee5e5aa3ec2ec637d6e8986be44cacac0fd01d93a8992a2d3a91574814da",
+    "nonce": 0
+  },
+  {
+    "index": 2,
+    "timestamp": "2025-11-28T07:20:36.579Z",
+    "data": {
+      "id": "af48752a-f63d-4990-b4ef-22b001ac5035",
+      "action": "BLOCK",
+      "notes": "Analyst manual review"
+    },
+    "previousHash": "67faee5e5aa3ec2ec637d6e8986be44cacac0fd01d93a8992a2d3a91574814da",
+    "hash": "fab26f9f634f49be2db82f51cc12e96ccf99729149ad9a6919f02bc955205a93",
+    "nonce": 0
+  },
+  {
+    "index": 3,
+    "timestamp": "2025-11-28T07:21:47.822Z",
+    "data": {
+      "id": "4893df05-cbd6-47d4-886e-5935ef35259c",
+      "action": "ALLOW",
+      "notes": "Analyst manual review"
+    },
+    "previousHash": "fab26f9f634f49be2db82f51cc12e96ccf99729149ad9a6919f02bc955205a93",
+    "hash": "33b3554b1dd375d4a864afeba8f66af0b5726815f34481c5f3fcf1ac6b140ef9",
+    "nonce": 0
+  },
+  {
+    "index": 4,
+    "timestamp": "2025-11-28T08:07:17.447Z",
+    "data": {
+      "type": "TRANSFER",
+      "from": "current_user",
+      "to": "aniya",
+      "amount": 3,
+      "currency": "SFT",
+      "reason": "rent",
+      "timestamp": "2025-11-28T08:07:17.447Z"
+    },
+    "previousHash": "33b3554b1dd375d4a864afeba8f66af0b5726815f34481c5f3fcf1ac6b140ef9",
+    "hash": "5815b6d9ef0d46bc63db59b852c5fcca245929bb552a06fa75d0bfe574e8c5b2",
+    "nonce": 0
+  },
+  {
+    "index": 5,
+    "timestamp": "2025-11-28T08:07:53.543Z",
+    "data": {
+      "type": "TRANSFER",
+      "from": "current_user",
+      "to": "aniya",
+      "amount": 7,
+      "currency": "SFT",
+      "reason": "rent",
+      "timestamp": "2025-11-28T08:07:53.543Z"
+    },
+    "previousHash": "5815b6d9ef0d46bc63db59b852c5fcca245929bb552a06fa75d0bfe574e8c5b2",
+    "hash": "6c507d66bde91c1540f3c4f7f3c6f8833a21bef9d55b187a8aaeb762c0369cf0",
+    "nonce": 0
+  },
+  {
+    "index": 6,
+    "timestamp": "2025-11-28T08:30:20.423Z",
+    "data": {
+      "type": "TRANSFER",
+      "from": "current_user",
+      "to": "aniya",
+      "amount": 1,
+      "currency": "SFT",
+      "reason": "rent",
+      "timestamp": "2025-11-28T08:30:20.423Z"
+    },
+    "previousHash": "6c507d66bde91c1540f3c4f7f3c6f8833a21bef9d55b187a8aaeb762c0369cf0",
+    "hash": "a8f10d6761c8d3e64aec6155308c3ef8ce8356240b838f558d11241025fd66c8",
+    "nonce": 0
+  },
+  {
+    "index": 7,
+    "timestamp": "2025-11-28T09:52:07.101Z",
+    "data": {
+      "id": "49cf6e7a-d7dd-45ee-853c-f89b6c8db67e",
+      "action": "BLOCK",
+      "notes": "Analyst manual review"
+    },
+    "previousHash": "a8f10d6761c8d3e64aec6155308c3ef8ce8356240b838f558d11241025fd66c8",
+    "hash": "9c72958e14438c65c277806bf00a0b6a45410e962c6c8515a67714751764b937",
+    "nonce": 0
+  },
+  {
+    "index": 8,
+    "timestamp": "2025-11-28T10:16:11.748Z",
+    "data": {
+      "id": "9b142f69-f3fd-4d10-b72f-042f8ca8b431",
+      "action": "BLOCK",
+      "notes": "Analyst manual review"
+    },
+    "previousHash": "9c72958e14438c65c277806bf00a0b6a45410e962c6c8515a67714751764b937",
+    "hash": "7774677c05ad80688ee414354deab74a3686c3f8bf40630fbbfab11b8915d76f",
+    "nonce": 0
+  },
+  {
+    "index": 9,
+    "timestamp": "2025-11-28T11:04:07.153Z",
+    "data": {
+      "id": "05481c35-afcd-4bbb-9485-4723eacd4df8",
+      "action": "BLOCK",
+      "notes": "Analyst manual review"
+    },
+    "previousHash": "7774677c05ad80688ee414354deab74a3686c3f8bf40630fbbfab11b8915d76f",
+    "hash": "fabf135893e30736e0efc6288fae07c080df69ff6dc49a5a27aaa797d175385a",
+    "nonce": 0
+  }
+]
