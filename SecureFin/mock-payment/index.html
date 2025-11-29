@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SFT Mock Payment</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #0B0F10; color: white; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .container { background-color: rgba(255, 255, 255, 0.05); padding: 2rem; border-radius: 1rem; border: 1px solid rgba(255, 255, 255, 0.1); width: 400px; box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); backdrop-filter: blur(5px); }
+        h2 { text-align: center; color: #00C2A8; margin-bottom: 1.5rem; }
+        .info { margin-bottom: 1.5rem; padding: 1rem; background: rgba(0, 194, 168, 0.1); border-radius: 0.5rem; font-size: 0.9rem; }
+        .info p { margin: 0.5rem 0; display: flex; justify-content: space-between; }
+        input { width: 100%; padding: 0.75rem; margin-bottom: 1rem; background: rgba(0, 0, 0, 0.2); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 0.5rem; color: white; box-sizing: border-box; }
+        input:focus { outline: none; border-color: #00C2A8; }
+        button { width: 100%; padding: 0.75rem; background-color: #00C2A8; color: black; border: none; border-radius: 0.5rem; font-weight: bold; cursor: pointer; transition: opacity 0.2s; }
+        button:hover { opacity: 0.9; }
+        button:disabled { background-color: #555; cursor: not-allowed; }
+        #status { margin-top: 1rem; text-align: center; font-size: 0.9rem; min-height: 1.2rem; }
+        .success { color: #4ade80; }
+        .error { color: #f87171; }
+    </style>
+    <!-- Import Ethers.js v6 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.11.1/ethers.umd.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+    <h2>SFT Mock Payment</h2>
+    
+    <div id="connect-section">
+        <button id="connectBtn" onclick="connectWallet()">Connect MetaMask</button>
+    </div>
+
+    <div id="wallet-section" style="display: none;">
+        <div class="info">
+            <p><span>Address:</span> <span id="userAddress">...</span></p>
+            <p><span>Balance:</span> <span id="userBalance">0.00</span> SFT</p>
+        </div>
+
+        <input type="text" id="recipient" placeholder="Recipient Address (0x...)" />
+        <input type="number" id="amount" placeholder="Amount (SFT)" step="0.01" />
+        
+        <button id="sendBtn" onclick="sendSFT()">Send SFT</button>
+    </div>
+
+    <div id="status"></div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
